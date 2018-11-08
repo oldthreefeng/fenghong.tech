@@ -65,7 +65,32 @@ connection :: The server could not connect to the client for DV :: DNS query tim
 
 发现问题出在 DNS 服务器上，我用的是 DNSpod ，无法通过验证，最后是将域名的 DNS 服务器临时换成 Godaddy 的才解决问题，通过验证，然后再换回原来的 DNSpod 。
 证书生成成功后，会有 Congratulations 的提示，并告诉我们证书放在 /etc/letsencrypt/live 这个位置
+```
+IMPORTANT NOTES:
+ - The following errors were reported by the server:
 
+   Domain: fenghong.tech
+   Type:   unauthorized
+   Detail: Invalid response from
+   http://fenghong.tech/.well-known/acme-challenge/kx-juv4XwQFz1TkhL1xGNda5Nm8_fwa8rQoRUfvS01c:
+   "<!DOCTYPE html>\n<html>\n  <head>\n    <meta
+   http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n
+   <meta http-equiv=\"Co"
+
+   Domain: www.fenghong.tech
+   Type:   unauthorized
+   Detail: Invalid response from
+   http://www.fenghong.tech/.well-known/acme-challenge/B0jELU0RmyeEt9xA9FKi6NTxj4m5PjJlvx4iCXNR4d8:
+   "<!DOCTYPE html>\n<html>\n  <head>\n    <meta
+   http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\">\n
+   <meta http-equiv=\"Co"
+
+   To fix these errors, please make sure that your domain name was
+   entered correctly and the DNS A/AAAA record(s) for that domain
+   contain(s) the right IP address.
+
+```
+  这个问题是因为自己的A记录是指向了github.io，导致配置文件根本读取不到，取消gitub的A记录即可，保持自己的A记录指向自己的IP哦！
 
 ```
 IMPORTANT NOTES:
