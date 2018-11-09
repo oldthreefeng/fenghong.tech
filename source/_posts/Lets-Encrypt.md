@@ -188,7 +188,7 @@ certbot （实际上是 certbot-auto ） 有两种方式生成证书：
 试了下[这个脚本](https://github.com/xdtianyu/scripts/tree/master/lets-encrypt)，在它的基础上改了一些，签发/更新比较方便（其实就是重新签发）。核心是使用[diafygi/acme-tiny](https://github.com/diafygi/acme-tiny)，相对于certbot复杂以及各种环境检查，安装一堆东西，这个Python写的工具我感觉好用多了，在傻瓜式和使用上选择了一个折中合适的点。
 
 
-## 一个快速获取/更新 Let's encrypt 证书的 shell script
+### 一个快速获取/更新 Let's encrypt 证书的 shell script
 ------------
 
 调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。
@@ -250,7 +250,7 @@ DOMAINS="DNS:example.com,DNS:whatever.example.com"
 
 
 
-## 其它参考
+### 其它参考
 
 - [Let's Encrypt，免费好用的 HTTPS 证书](https://imququ.com/post/letsencrypt-certificate.html)
 - [Let’s Encrypt免费HTTPS SSL证书获取教程](https://blog.kuoruan.com/71.html)
