@@ -7,6 +7,8 @@ tags:
 - nginx
 - certbot
 - https
+- acme_tiny
+- Python
 categories: server
 ---
 
@@ -181,3 +183,83 @@ certbot （实际上是 certbot-auto ） 有两种方式生成证书：
 - **webroot** 方式： certbot 会利用既有的 web server，在其 web root目录下创建隐藏文件， Let’s Encrypt 服务端会通过域名来访问这些隐藏文件，以确认你的确拥有对应域名的控制权。
 
 本文用的是 webroot 方式，也只推荐 webroot 方式，这也是前文第二步验证域名所有权在 nginx 虚拟主机配置文件中添加 location 段落内容的原因。
+
+
+试了下[这个脚本](https://github.com/xdtianyu/scripts/tree/master/lets-encrypt)，在它的基础上改了一些，签发/更新比较方便（其实就是重新签发）。核心是使用[diafygi/acme-tiny](https://github.com/diafygi/acme-tiny)，相对于certbot复杂以及各种环境检查，安装一堆东西，这个Python写的工具我感觉好用多了，在傻瓜式和使用上选择了一个折中合适的点。
+
+
+# 一个快速获取/更新 Let's encrypt 证书的 shell script
+------------
+
+调用 acme_tiny.py 认证、获取、更新证书，不需要额外的依赖。
+
+**下载到本地**
+
+```
+wget https://raw.githubusercontent.com/oldthreefeng/scripts/master/lets-encrypt/letsencrypt.conf
+wget https://raw.githubusercontent.com/oldthreefeng/scripts/master/lets-encrypt/letsencrypt.sh
+chmod +x letsencrypt.sh
+```
+
+**配置文件**
+
+只需要修改 DOMAIN_KEY DOMAIN_DIR DOMAINS 为你自己的信息
+
+```
+ACCOUNT_KEY="letsencrypt-account.key"
+DOMAIN_KEY="example.com.key"
+DOMAIN_DIR="/var/www/example.com"
+DOMAINS="DNS:example.com,DNS:whatever.example.com"
+#ECC=TRUE
+#LIGHTTPD=TRUE
+```
+
+执行过程中会自动生成需要的 key 文件。其中 `ACCOUNT_KEY` 为账户密钥， `DOMAIN_KEY` 为域名私钥， `DOMAIN_DIR` 为域名指向的目录，`DOMAINS` 为要签的域名列表， 需要 `ECC` 证书时取消 `#ECC=TRUE` 的注释，需要为 `lighttpd` 生成 `pem` 文件时，取消 `#LIGHTTPD=TRUE` 的注释。
+
+**运行**
+
+```
+./letsencrypt.sh letsencrypt.conf
+```
+
+**注意**
+
+需要已经绑定域名到 `/var/www/example.com` 目录，即通过 `http://example.com` `http://whatever.example.com` 可以访问到 `/var/www/example.com` 目录，用于域名的验证
+
+**将会生成如下几个文件**
+
+    lets-encrypt-x1-cross-signed.pem
+    example.chained.crt          # 即网上搜索教程里常见的 fullchain.pem
+    example.com.key              # 即网上搜索教程里常见的 privkey.pem 
+    example.crt
+    example.csr
+
+**在 nginx 里添加 ssl 相关的配置**
+
+    ssl_certificate     /path/to/cert/example.chained.crt;
+    ssl_certificate_key /path/to/cert/example.com.key;
+
+**cron 定时任务**
+
+每个月自动更新一次证书，可以在脚本最后加入 service nginx reload等重新加载服务。
+
+```
+0 0 1 * * /etc/nginx/certs/letsencrypt.sh /etc/nginx/certs/letsencrypt.conf >> /var/log/lets-encrypt.log 2>&1  && 
+```
+
+
+
+
+## 其它参考
+
+- [Let's Encrypt，免费好用的 HTTPS 证书](https://imququ.com/post/letsencrypt-certificate.html)
+- [Let’s Encrypt免费HTTPS SSL证书获取教程](https://blog.kuoruan.com/71.html)
+- [用Let’s Encrypt获取免费证书](https://www.paulyang.cn/blog/archives/39)
+- [免费SSL证书Let’s Encrypt安装使用教程:Apache和Nginx配置SSL](http://www.freehao123.com/lets-encrypt/)
+- [使用 Let’s Encrypt 开源 SSL 证书](使用 Let’s Encrypt 开源 SSL 证书)
+- [How To Secure Nginx with Let's Encrypt on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04)
+- [一个快速获取/更新 Let's encrypt 证书的 shell script](https://www.v2ex.com/t/241819) | [另外一个](https://github.com/xdtianyu/scripts/blob/master/lets-encrypt/README-CN.md)
+- [Cipherli.st](https://cipherli.st/) 提供了各种webserver和一些软件的ssl推荐配置
+- [SSL Server Test](https://www.ssllabs.com/ssltest/index.html) 站点https安全分析/检查
+- [实践个人网站迁移HTTPS与HTTP/2](https://www.freemindworld.com/blog/2016/160301_migrate_to_https_and_http2.shtml)
+- [Wiki · Tanky Woo](https://wiki.tankywoo.com/tool/letsencrypt.html)
