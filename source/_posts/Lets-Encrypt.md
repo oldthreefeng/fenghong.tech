@@ -249,7 +249,7 @@ DOMAINS="DNS:example.com,DNS:whatever.example.com"
 
 **多个域名处理**
 
-我有aaa.com和bbb.com，在同一，生成两个比如aaa.conf和bbb.conf.生成两个文件后，脚本运行两次即可。当然配置文件内容请看上面的信息，按需更改。
+我有aaa.com和bbb.com，在同一个主机里进行https证书生成，这时，我们生成两个比如aaa.conf和bbb.conf.生成两个文件后，脚本运行两次即可。当然配置文件内容请看上面的信息，按需更改。
 利用crontab 进行每月更新，具体如上，就不赘述了。
 
 ```
