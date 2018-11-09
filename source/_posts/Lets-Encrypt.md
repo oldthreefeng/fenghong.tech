@@ -256,7 +256,7 @@ DOMAINS="DNS:example.com,DNS:whatever.example.com"
 - [Let’s Encrypt免费HTTPS SSL证书获取教程](https://blog.kuoruan.com/71.html)
 - [用Let’s Encrypt获取免费证书](https://www.paulyang.cn/blog/archives/39)
 - [免费SSL证书Let’s Encrypt安装使用教程:Apache和Nginx配置SSL](http://www.freehao123.com/lets-encrypt/)
-- [使用 Let’s Encrypt 开源 SSL 证书](使用 Let’s Encrypt 开源 SSL 证书)
+
 - [How To Secure Nginx with Let's Encrypt on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04)
 - [一个快速获取/更新 Let's encrypt 证书的 shell script](https://www.v2ex.com/t/241819) | [另外一个](https://github.com/xdtianyu/scripts/blob/master/lets-encrypt/README-CN.md)
 - [Cipherli.st](https://cipherli.st/) 提供了各种webserver和一些软件的ssl推荐配置
