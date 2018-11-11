@@ -1,5 +1,5 @@
 ---
-title: the way to go
+title: The way to go(directory)
 date: 2018-11-11 22:50:12
 urlname: the-way-to-go
 tags: 
@@ -7,6 +7,8 @@ tags:
   - learning
 categories: linux
 ---
+
+[github 源码地址](https://github.com/Unknwon/the-way-to-go_ZH_CN)
 
 # 目录
 
