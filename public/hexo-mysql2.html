@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google2484979e140c56f7.html" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+  <meta name="msapplication-config" content="/images/browserconfig.xml" />
+
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="louis | blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据库基础传统的文件系统管理的缺陷编写应用程序不方便；数据冗余不可避免；应用程序依赖性；不支持对文件的并发访问；数据间联系弱；难以按用户视图表示数据；无阶段性安全控制功能. 数据库管理系统的优点相互关联的数据的集合；较少的数据冗余；程序与数据相互独立；保证数据的安全、可靠；最大限度地保证数据的正确性；数据可以并发使用并能同时保证一致性. 数据库管理系统数据库是数据的汇集，它以一定的组织形式存于存储">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MYSQL(二)">
+<meta property="og:url" content="https://fenghong.tech/hexo-mysql2.html">
+<meta property="og:site_name" content="louis | blog">
+<meta property="og:description" content="数据库基础传统的文件系统管理的缺陷编写应用程序不方便；数据冗余不可避免；应用程序依赖性；不支持对文件的并发访问；数据间联系弱；难以按用户视图表示数据；无阶段性安全控制功能. 数据库管理系统的优点相互关联的数据的集合；较少的数据冗余；程序与数据相互独立；保证数据的安全、可靠；最大限度地保证数据的正确性；数据可以并发使用并能同时保证一致性. 数据库管理系统数据库是数据的汇集，它以一定的组织形式存于存储">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-07T11:31:40.439Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MYSQL(二)">
+<meta name="twitter:description" content="数据库基础传统的文件系统管理的缺陷编写应用程序不方便；数据冗余不可避免；应用程序依赖性；不支持对文件的并发访问；数据间联系弱；难以按用户视图表示数据；无阶段性安全控制功能. 数据库管理系统的优点相互关联的数据的集合；较少的数据冗余；程序与数据相互独立；保证数据的安全、可靠；最大限度地保证数据的正确性；数据可以并发使用并能同时保证一致性. 数据库管理系统数据库是数据的汇集，它以一定的组织形式存于存储">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fenghong.tech/hexo-mysql2.html"/>
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: ""
+    });
+  daovoice('update');
+  </script>
+
+
+  <title>MYSQL(二) | louis | blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">louis | blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">山不在高，有仙则名；水不在深，有龙则灵。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            music
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-wiki">
+          <a href="http://wiki.fenghong.tech/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            wiki
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fenghong.tech/hexo-mysql2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Louis">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="louis | blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MYSQL(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T20:33:14+08:00">
+                2018-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MYSQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MYSQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-mysql2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="hexo-mysql2.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/hexo-mysql2.html" class="leancloud_visitors" data-flag-title="MYSQL(二)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+		 <span>℃</spqn>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,837
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><h2 id="传统的文件系统管理的缺陷"><a href="#传统的文件系统管理的缺陷" class="headerlink" title="传统的文件系统管理的缺陷"></a>传统的文件系统管理的缺陷</h2><p>编写应用程序不方便；<br>数据冗余不可避免；<br>应用程序依赖性；<br>不支持对文件的并发访问；<br>数据间联系弱；<br>难以按用户视图表示数据；<br>无阶段性安全控制功能.</p>
+<h2 id="数据库管理系统的优点"><a href="#数据库管理系统的优点" class="headerlink" title="数据库管理系统的优点"></a>数据库管理系统的优点</h2><p>相互关联的数据的集合；<br>较少的数据冗余；<br>程序与数据相互独立；<br>保证数据的安全、可靠；<br>最大限度地保证数据的正确性；<br>数据可以并发使用并能同时保证一致性.</p>
+<h2 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h2><p>数据库是数据的汇集，它以一定的组织形式存于存储介质上<br>DBMS是管理数据库的系统软件，它实现数据库系统的各种功能。是数据库系统的核心<br>DBA：负责数据库的规划、设计、协调、维护和管理等工作<br>应用程序指以数据库为基础的应用程序;</p>
+<p>单机架构;<br>大型主机/终端架构;<br>主从分布式(C/S); MYSQL,ORICAL<br>分布式架构;</p>
+<h2 id="关系型数据Key-Value"><a href="#关系型数据Key-Value" class="headerlink" title="关系型数据Key/Value"></a>关系型数据Key/Value</h2><p><strong>数据库</strong><br>    关系 ：关系就是二维表。并满足如下性质：<br>        表中的行、列次序并不重要<br>    行row：表中的每一行，又称为一条记录(record)<br>    列column：表中的每一列，称为属性，字段<br>    主键（Primary key）：用于惟一确定一个记录的字段<br>    域domain：属性的取值范围，如，性别只能是‘男’和‘女’两个值<br>    外键（Foreign key):用于表之间的一对多的关系<br>    唯一键(Uniq key):可以为null，<br><strong>非关系型数据库</strong>：NO SQL (not only SQL)<br>    mencached     redis    mogoDB<br><strong>RDBMS</strong>：<br>    MySQL: MySQL, MariaDB, Percona Server<br>    PostgreSQL: 简称为pgsql，EnterpriseDB<br>    Oracle：<br>    MSSQL：<br>    DB2:<br><strong>事务tansaction</strong>：多个操作被当作一个整体对待<br>    ACID:<br>        A:原子性<br>        C:一致性<br>        I:隔离性<br>        D:持久性<br>    事务未撤销，形成的数据为:dirty data</p>
+<h2 id="数据三要素"><a href="#数据三要素" class="headerlink" title="数据三要素"></a>数据三要素</h2><p><strong>数据结构：</strong></p>
+<p>​    一类是与数据类型、内容、性质有关的对象，比如关系模型中的域、属性和关系等；<br>    另一类是与数据之间联系有关的对象，它从数据组织层表达数据记录与字段的结构</p>
+<p><strong>数据的操作</strong>：</p>
+<p>​    数据提取：在数据集合中提取感兴趣的内容。SELECT<br>    数据更新：变更数据库中的数据。INSERT、DELETE、UPDATE</p>
+<p><strong>数据的约束条件</strong> ：<br>是一组完整性规则的集合：</p>
+<p>​    实体(行)完整性 Entity integrity<br>    域(列)完整性 Domain Integrity<br>    参考完整性 Referential Integrity</p>
+<h2 id="数据库的正规化分析"><a href="#数据库的正规化分析" class="headerlink" title="数据库的正规化分析"></a>数据库的正规化分析</h2><p><strong>RDMBS设计范式基础概念</strong>—物理层</p>
+<p>​    设计关系数据库时，遵从不同的规范要求，设计出合理的关系型数据库，这些不同的规范要求被称为不同范式，各种范式呈递次规范，越高的范式数据库冗余越小</p>
+<p><strong>目前关系数据库有六种范式：</strong>—逻辑层</p>
+<p>​    第一范式（1NF）、第二范式（2NF）、第三范式（3NF）、巴德斯科范式（BCNF）、第四范式(4NF）和第五范式（5NF，又称完美范式）。满足最低要求的范式是第一范式（1NF）。在第一范式的基础上进一步满足更多规范要求的称为第二范式（2NF），其余范式以次类推。一般说来，数据库只需满足第三范式(3NF）即可<br><strong>范式</strong><br>    1NF：无重复的列，每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性。除去同类型的字段，就是无重复的列<br>    说明：第一范式（1NF）是对关系模式的基本要求，不满足第一范式（1NF）的数据库就不是关系数据库;</p>
+<p>​    2NF：属性完全依赖于主键，第二范式必须先满足第一范式，要求表中的每个行必须可以被唯一地区分。通常为表加上一个列，以存储各个实例的唯一标识PK，非PK的字段需要与整个PK有直接相关性;</p>
+<p>​    3NF：属性不依赖于其它非主属性，满足第三范式必须先满足第二范式。第三范式要求一个数据库表中不包含已在其它表中已包含的非主关键字信息，非PK的字段间不能有从属关系;<br>    为了性能，某些数据库不满足范式，增加了数据库的冗余.</p>
+<h2 id="MYSQL概念"><a href="#MYSQL概念" class="headerlink" title="MYSQL概念"></a>MYSQL概念</h2><p><strong>历史发展</strong><br>    1979年：TcX公司 Monty Widenius，Unireg<br>    1996年：发布MySQL1.0，Solaris版本，Linux版本<br>    1999年：MySQL AB公司，瑞典<br>    2003年：MySQL 5.0版本，提供视图、存储过程等功能<br>    2008年：Sun 收购<br>    2009年：Oracle收购sun<br>    2009年：Monty成立MariaDB</p>
+<h2 id="启动MariaDB服务"><a href="#启动MariaDB服务" class="headerlink" title="启动MariaDB服务"></a>启动MariaDB服务</h2><h3 id="初识数据库"><a href="#初识数据库" class="headerlink" title="初识数据库"></a><strong>初识数据库</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">]#systemctl start mariadb</span><br><span class="line">]#mysql</span><br><span class="line">MariaDB [(none)]&gt;drop database test; #删除数据库test</span><br><span class="line">MariaDB [(none)]&gt;use mysql;</span><br><span class="line">MariaDB [mysql]&gt; status</span><br><span class="line">MariaDB [mysql]&gt; create database testdb;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line">MariaDB [mysql]&gt; \! ls /var/lib/mysql</span><br><span class="line">MariaDB [mysql]&gt; SELECT user,password,host FROM user;</span><br><span class="line">]#mysql_secure_installation		#设置mysql密码</span><br><span class="line">]#mysql -uroot -p              #输入密码</span><br><span class="line">MariaDB [mysql]&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">+--------------------+</span><br><span class="line">MariaDB [mysql]&gt; SELECT user,host,password FROM user;</span><br><span class="line">MariaDB [mysql]&gt; SELECT * FROM user\G;</span><br><span class="line">MariaDB [mysql]&gt;quit</span><br></pre></td></tr></table></figure>
+<p><strong>交互式命令</strong></p>
+<p>可以接受输入重定向。可以source</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">]#mysql -uroot -proot &lt; test.sql</span><br><span class="line">MariaDB [(none)]&gt; source test.sql</span><br></pre></td></tr></table></figure>
+<p><strong>客户端命令</strong></p>
+<p>可以不用加”;”结束语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Note that all text commands must be first on line and end with &apos;;&apos;</span><br><span class="line">?         (\?) Synonym for `help&apos;.</span><br><span class="line">clear     (\c) Clear the current input statement.</span><br><span class="line">connect   (\r) Reconnect to the server. Optional arguments are db and host.</span><br><span class="line">delimiter (\d) Set statement delimiter.</span><br><span class="line">edit      (\e) Edit command with $EDITOR.</span><br><span class="line">ego       (\G) Send command to mysql server, display result vertically.</span><br><span class="line">exit      (\q) Exit mysql. Same as quit.</span><br><span class="line">go        (\g) Send command to mysql server.</span><br><span class="line">help      (\h) Display this help.</span><br><span class="line">nopager   (\n) Disable pager, print to stdout.</span><br><span class="line">notee     (\t) Don&apos;t write into outfile.</span><br><span class="line">pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.</span><br><span class="line">print     (\p) Print current command.</span><br><span class="line">prompt    (\R) Change your mysql prompt.</span><br><span class="line">quit      (\q) Quit mysql.</span><br><span class="line">rehash    (\#) Rebuild completion hash.</span><br><span class="line">source    (\.) Execute an SQL script file. Takes a file name as an argument.</span><br><span class="line">status    (\s) Get status information FROM the server.</span><br><span class="line">system    (\!) Execute a system shell command.</span><br><span class="line">tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.</span><br><span class="line">use       (\u) Use another database. Takes database name as argument.</span><br><span class="line">charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.</span><br><span class="line">warnings  (\W) Show warnings after every statement.</span><br><span class="line">nowarning (\w) Don&apos;t show warnings after every statement.</span><br></pre></td></tr></table></figure>
+<h2 id="修改MariaDB环境变量"><a href="#修改MariaDB环境变量" class="headerlink" title="修改MariaDB环境变量"></a><strong>修改MariaDB环境变量</strong></h2><h3 id="shell的环境变量；"><a href="#shell的环境变量；" class="headerlink" title="shell的环境变量；"></a>shell的环境变量；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">]#vim /etc/profile.d/mysql.sh</span><br><span class="line">export MYSQL_PS1=&quot;(\u@\h) [\d]&gt; &quot;</span><br><span class="line">]#. /etc/profile.d/mysql.sh</span><br></pre></td></tr></table></figure>
+<h3 id="命令行的选项改变mariadb-PS1"><a href="#命令行的选项改变mariadb-PS1" class="headerlink" title="命令行的选项改变mariadb_PS1;"></a>命令行的选项改变mariadb_PS1;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [(none)]&gt; prompt \u@[\D]---&gt;</span><br><span class="line">PROMPT set to &apos;\u@[\D]---&gt;&apos;</span><br><span class="line">root@[Mon Jun  4 23:08:30 2018]---&gt;</span><br><span class="line">]#mysql --prompt=&quot;(\u@\h) [\d]&gt; &quot;</span><br></pre></td></tr></table></figure>
+<h3 id="etc-my-cnf-d-mysql-clients-cnf的文件修改"><a href="#etc-my-cnf-d-mysql-clients-cnf的文件修改" class="headerlink" title="/etc/my.cnf.d/mysql-clients.cnf的文件修改"></a>/etc/my.cnf.d/mysql-clients.cnf的文件修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">]#vim /etc/my.cnf.d/mysql-clients.cnf </span><br><span class="line">[mysql]</span><br><span class="line">prompt=(\\u@\\h) [\\d]&gt;\\_</span><br></pre></td></tr></table></figure>
+<h2 id="Mysql客户端选项"><a href="#Mysql客户端选项" class="headerlink" title="Mysql客户端选项"></a><strong>Mysql客户端选项</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql客户端可用选项：</span><br><span class="line">-A, --no-auto-rehash 禁止补全</span><br><span class="line">-u, --user=  用户名,默认为root</span><br><span class="line">-h, --host=  服务器主机,默认为localhost</span><br><span class="line">-p, --passowrd=  用户密码,建议使用-p,默认为空密码</span><br><span class="line">-P, --port=  服务器端口</span><br><span class="line">-S, --socket= 指定连接socket文件路径</span><br><span class="line">-D, --database= 指定默认数据库</span><br><span class="line">-C, --compress  启用压缩</span><br><span class="line">-e &quot;SQL&quot; 执行SQL命令</span><br><span class="line">-V, --version 显示版本</span><br><span class="line">-v --verbose 显示详细信息</span><br><span class="line">--print-defaults 获取程序默认使用的配置</span><br><span class="line">]#mysql -e &quot;show databases;&quot;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br></pre></td></tr></table></figure>
+<h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a><strong>数据库操作</strong></h1><h2 id="SQL规范"><a href="#SQL规范" class="headerlink" title="SQL规范"></a><strong>SQL规范</strong></h2><ul>
+<li>在数据库系统中，SQL语句不区分大小写(建议用大写)</li>
+<li>但字符串常量区分大小写</li>
+<li>SQL语句可单行或多行书写，以“;”结尾</li>
+<li>关键词不能跨多行或简写</li>
+<li>用空格和缩进来提高语句的可读性</li>
+<li>子句通常位于独立行，便于编辑，提高可读性</li>
+<li>注释：</li>
+<li>SQL标准：<br>  /<em>注释内容</em>/ 多行注释<br>  – 注释内容 单行注释，注意有空格</li>
+<li>MySQL注释：#</li>
+</ul>
+<h2 id="数据库的组件-对象-："><a href="#数据库的组件-对象-：" class="headerlink" title="数据库的组件(对象)："></a>数据库的组件(对象)：</h2><p>数据库、表、索引、视图、用户、存储过程、函数、触发器、事件调度器等</p>
+<ul>
+<li>命名规则：</li>
+<li>必须以字母开头</li>
+<li>可包括数字和三个特殊字符（# _ $）</li>
+<li>不要使用MySQL的保留字</li>
+<li>同一database(Schema)下的对象不能同名</li>
+</ul>
+<h2 id="数据库操作-1"><a href="#数据库操作-1" class="headerlink" title="数据库操作"></a>数据库操作</h2><p><strong>创建数据库：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE|SCHEMA [IF NOT EXISTS] &apos;DB_NAME&apos;;</span><br><span class="line">CHARACTER SET &apos;character set name&apos;</span><br><span class="line">COLLATE &apos;collate name&apos;</span><br></pre></td></tr></table></figure></p>
+<p><strong>删除数据库</strong></p>
+<p><code>DROP DATABASE|SCHEMA [IF EXISTS] &#39;DB_NAME&#39;;</code></p>
+<ul>
+<li>查看支持所有字符集：<br><code>SHOW CHARACTER SET;</code></li>
+<li>查看支持所有排序规则：<br><code>SHOW COLLATION;</code></li>
+<li>获取命令使用帮助：<br><code>mysql&gt; HELP KEYWORD;</code></li>
+<li>查看数据库列表：<br><code>mysql&gt; SHOW DATABASES;</code></li>
+<li>例如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [(none)]&gt; \! ls /var/lib/mysql</span><br><span class="line">aria_log.00000001  aria_log_control  ibdata1  ib_logfile0  ib_logfile1	mysql  mysql.sock  performance_schema  test</span><br><span class="line">MariaDB [(none)]&gt; CRAETE DATABASE DB1;</span><br><span class="line">MariaDB [(none)]&gt; \! cat /var/lib/mysql/DB1/db.opt</span><br><span class="line">default-character-set=latin1</span><br><span class="line">default-collation=latin1_swedish_ci</span><br><span class="line">MariaDB [(none)]&gt; SHOW CHARACTER SET; 	#排序规则</span><br><span class="line">MariaDB [(none)]&gt; DROP DATABASE DB1;	#删除数据库DB1</span><br><span class="line">MariaDB [(none)]&gt; USE DB1</span><br><span class="line">Database changed</span><br><span class="line">MariaDB [DB1]&gt; SHOW TABLES;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p><a href="http://dev.mysql.com/doc/refman/5.5/en/create-database.html" target="_blank" rel="noopener">create database sytanx</a></p>
+<h1 id="表的操作"><a href="#表的操作" class="headerlink" title="表的操作"></a><strong>表的操作</strong></h1><p>选择正确的数据类型对于获得高性能至关重要，三大原则：</p>
+<ul>
+<li>更小的通常更好，尽量使用可正确存储数据的最小数据类型</li>
+<li>简单就好，简单数据类型的操作通常需要更少的CPU周期</li>
+<li>尽量避免NULL，包含为NULL的列，对MySQL更难优化</li>
+</ul>
+<p><strong>表操作</strong></p>
+<ul>
+<li>查看所有的引擎：<code>SHOW ENGINES</code></li>
+<li>查看表：<code>SHOW TABLES [FROM db_name]</code></li>
+<li>查看表结构：<code>DESC [db_name.]tb_name</code></li>
+<li>删除表：<code>DROP TABLE [IF EXISTS] tb_name</code></li>
+<li>查看表创建命令：<code>SHOW CREATE TABLE tbl_name</code></li>
+<li>查看表状态：<code>SHOW TABLE STATUS LIKE &#39;tbl_name&#39;</code></li>
+<li>查看库中所有表状态： <code>SHOW TABLE STATUS FROM  db_name</code></li>
+<li>修改表：不建议修改，修改请备份</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; create table student ( id tinyint unsigned not null primary key,name char(10) not null, phone char(11),sex char(1) );</span><br><span class="line">MariaDB [DB1]&gt; desc student;</span><br><span class="line">MariaDB [DB1]&gt; show table status like &apos;student&apos;\G;</span><br><span class="line">MariaDB [DB1]&gt; create table emp ( id int unsigned auto_increment primary key, name varchar(30) not null, sex char(1) default &apos;m&apos;, addresss varchar(100) ) engine=innodb default charset=utf8;</span><br><span class="line"></span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line">MariaDB [DB1]&gt; show create table emp\G;</span><br><span class="line">MariaDB [DB1]&gt; create table user SELECT user,host,password FROM mysql.user;</span><br><span class="line">MariaDB [DB1]&gt; create table user2 SELECT user,host,password FROM mysql.user where 1 = 0;</span><br><span class="line">MariaDB [DB1]&gt; create table user3 like mysql.user;</span><br><span class="line">MariaDB [DB1]&gt; desc user2;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>set<br>多选</p>
+</li>
+<li><p>enum<br>二选一</p>
+</li>
+<li><p>primary key</p>
+<p>主键绑定name,city;</p>
+<p><code>MariaDB [DB1]&gt; create table t1 ( name char(30),city char(30), sex char(1),primary key(name,city));</code></p>
+</li>
+</ul>
+<h2 id="DML语句"><a href="#DML语句" class="headerlink" title="DML语句"></a>DML语句</h2><h2 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; insert student values(1,&apos;bai&apos;,&apos;10086&apos;,&apos;m&apos;);</span><br><span class="line">MariaDB [DB1]&gt; insert student(id,name) values(70,&apos;wang&apos;);</span><br><span class="line">MariaDB [DB1]&gt; insert student(id,name,sex) values(2,&apos;wang&apos;,&apos;m&apos;),(3,&apos;lin&apos;,&apos;f&apos;);</span><br><span class="line">MariaDB [DB1]&gt; insert student set id=4,name=&apos;zhao&apos;;</span><br><span class="line">MariaDB [DB1]&gt; insert emp(name,addresss) SELECT user,host FROM user;</span><br></pre></td></tr></table></figure>
+<h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; update emp set name=&apos;admin&apos;,addresss=&apos;beijing&apos; where id=1;</span><br><span class="line">MariaDB [DB1]&gt; update emp set name=&apos;admin&apos;,addresss=&apos;beijing&apos; where name=&apos;root&apos; LIMIT 2;</span><br></pre></td></tr></table></figure>
+<h2 id="delete-慎用"><a href="#delete-慎用" class="headerlink" title="delete:慎用"></a>delete:慎用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; truncate table emp;</span><br><span class="line">MariaDB [DB1]&gt; delete FROM emp where id=4;</span><br></pre></td></tr></table></figure>
+<h2 id="mysql-U-安全模式"><a href="#mysql-U-安全模式" class="headerlink" title="mysql -U 安全模式"></a>mysql -U 安全模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">]# vim /etc/my.cnf/mysql-clients.cnf</span><br><span class="line">[mysql]</span><br><span class="line">safe-updates</span><br></pre></td></tr></table></figure>
+<h2 id="DQL语句"><a href="#DQL语句" class="headerlink" title="DQL语句"></a>DQL语句</h2><h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a><strong>SELECT</strong></h3><p>磁盘的数据排放形式来SELECT</p>
+<p>syntax:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">    [ALL | DISTINCT | DISTINCTROW ]</span><br><span class="line">      [HIGH_PRIORITY]</span><br><span class="line">      [STRAIGHT_JOIN]</span><br><span class="line">      [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]</span><br><span class="line">      [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]</span><br><span class="line">    SELECT_expr [, SELECT_expr ...]</span><br><span class="line">    [FROM table_references</span><br><span class="line">    [WHERE where_condition]</span><br><span class="line">    [GROUP BY &#123;col_name | expr | position&#125;</span><br><span class="line">      [ASC | DESC], ... [WITH ROLLUP]]</span><br><span class="line">    [HAVING where_condition]</span><br><span class="line">    [ORDER BY &#123;col_name | expr | position&#125;</span><br><span class="line">      [ASC | DESC], ...]</span><br><span class="line">    [LIMIT &#123;[offset,] row_count | row_count OFFSET offset&#125;]</span><br><span class="line">    [PROCEDURE procedure_name(argument_list)]</span><br><span class="line">    [INTO OUTFILE &apos;file_name&apos;</span><br><span class="line">        [CHARACTER SET charset_name]</span><br><span class="line">        export_options</span><br><span class="line">      | INTO DUMPFILE &apos;file_name&apos;</span><br><span class="line">      | INTO var_name [, var_name]]</span><br><span class="line">    [FOR UPDATE | LOCK IN SHARE MODE]]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h3 id="单表操作"><a href="#单表操作" class="headerlink" title="单表操作"></a>单表操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; SELECT &apos;hello world&apos;;</span><br><span class="line">+-------------+</span><br><span class="line">| hello world |</span><br><span class="line">+-------------+</span><br><span class="line">| hello world |</span><br><span class="line">+-------------+</span><br><span class="line">MariaDB [DB1]&gt; SELECT &apos;1+2&apos;,1+2 ;</span><br><span class="line">+-----+-----+</span><br><span class="line">| 1+2 | 1+2 |</span><br><span class="line">+-----+-----+</span><br><span class="line">| 1+2 |   3 |</span><br><span class="line">+-----+-----+</span><br></pre></td></tr></table></figure>
+<h3 id="where子句"><a href="#where子句" class="headerlink" title="where子句"></a>where子句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; SELECT * FROM user where host=&apos;localhost&apos;;</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student where sex is null;</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student where id &gt;=2 and id &lt;=5;</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student where sex in (&apos;f&apos;,&apos;m&apos;);</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student where sex in (&apos;f&apos;,&apos;m&apos;) or sex is null;</span><br><span class="line">MariaDB [DB1]&gt; SELECT id as 编号,name 姓名 FROM student where sex in (&apos;f&apos;,&apos;m&apos;) or sex is null;	#别名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>where子句模糊查询</p>
+<ul>
+<li>%：任意长度的任意字符</li>
+<li>_：任意单个字符</li>
+</ul>
+</li>
+<li>RLIKE：正则表达式，索引失效，不建议使用</li>
+<li>REGEXP：匹配字符串可用正则表达式书写模式，同上</li>
+<li>逻辑操作符：<ul>
+<li>NOT：!= </li>
+<li>AND:  </li>
+<li>OR</li>
+<li>XOR</li>
+</ul>
+</li>
+</ul>
+<p>group</p>
+<p>order by</p>
+<ul>
+<li>升序：ASC</li>
+<li>降序:DESC</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [DB1]&gt; SELECT * FROM student order by score ;</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student order by -score desc;</span><br><span class="line">MariaDB [DB1]&gt; SELECT * FROM student order by score LIMIT 3 ;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>FOR UPDATE</p>
+</li>
+<li><p>LOCK IN SHARE MODE</p>
+</li>
+</ul>
+<h3 id="SQL-JOINS"><a href="#SQL-JOINS" class="headerlink" title="SQL JOINS"></a>SQL JOINS</h3><ul>
+<li><p>LEFT OUTER  JOIN</p>
+</li>
+<li><p>ringt outer join</p>
+</li>
+<li><p>full join</p>
+</li>
+</ul>
+<p>多表查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [hellodb]&gt; SELECT s.name as s_name,t.name as t_name FROM students as s INNER JOIN teachers as t on s.teacherid=t.tid;</span><br><span class="line">MariaDB [hellodb]&gt; SELECT s.name as s_name,t.name as t_name FROM students as s LEFT OUTER  JOIN teachers as t on s.teacherid=t.tid;</span><br><span class="line">MariaDB [hellodb]&gt; SELECT s.name as s_name,t.name as t_name FROM students as s RIGHT OUTER  JOIN teachers as t on s.teacherid=t.tid;</span><br><span class="line">MariaDB [hellodb]&gt; SELECT st.name,sc.score FROM students as st INNER JOIN scores as sc on st.stuid=sc.stuid and score &gt; (SELECT AVG(score) FROM scores);</span><br></pre></td></tr></table></figure>
+<p>子查询</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [hellodb]&gt; SELECT st.name,sc.score FROM students as st INNER JOIN scores as sc on st.stuid=sc.stuid and score &gt; (SELECT AVG(score) FROM scores);</span><br></pre></td></tr></table></figure>
+<p>view</p>
+<ul>
+<li>类似shell中的别名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [hellodb]&gt; create view view_oldstu as SELECT * FROM students where age &gt;50;</span><br><span class="line">MariaDB [hellodb]&gt; SELECT * FROM view_oldstu;</span><br><span class="line">MariaDB [hellodb]&gt; drop  view view_oldstu;</span><br></pre></td></tr></table></figure>
+<h3 id="functions"><a href="#functions" class="headerlink" title="functions"></a>functions</h3><ul>
+<li>查看函数列表：<br>  SHOW FUNCTIOIN STATUS;</li>
+<li>查看函数定义<br>  SHOW CREATE FUNCTION function_name</li>
+<li>删除UDF:<br>  DROP FUNCTION function_name</li>
+<li>调用自定义函数语法:<br>  SELECT function_name(parameter_value,…)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [db1]&gt; DELIMITER //</span><br><span class="line">    -&gt; CREATE FUNCTION deleteById(uid SMALLINT UNSIGNED) RETURNS VARCHAR(20)</span><br><span class="line">    -&gt; BEGIN</span><br><span class="line">    -&gt; DELETE FROM students WHERE stuid = uid;</span><br><span class="line">    -&gt; RETURN (SELECT COUNT(uid) FROM students);</span><br><span class="line">    -&gt; END//</span><br><span class="line">MariaDB [db1]&gt; DELIMITER ;</span><br><span class="line">MariaDB [db1]&gt; SELECT deleteById（10）</span><br><span class="line">MariaDB [db1]&gt; SELECT * FROM mysql.proc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><ul>
+<li><p><strong>存储过程优势:</strong></p>
+<p>  存储过程把经常使用的SQL语句或业务逻辑封装起来,预编译保存在数据库中,当需要时从数据库中直接调用,省去了编译的过程<br>  提高了运行速度<br>  同时降低网络数据传输量</p>
+</li>
+<li><p><strong>存储过程与自定义函数的区别:</strong><br>存储过程实现的过程要复杂一些,而函数的针对性较强<br>存储过程可以有多个返回值,而自定义函数只有一个返回值<br>存储过程一般独立的来执行,而函数往往是作为其他SQL语句的一部分来使用</p>
+</li>
+<li><p>存储过程和函数中可以使用流程控制来控制语句的执行</p>
+</li>
+</ul>
+<h3 id="流程控制："><a href="#流程控制：" class="headerlink" title="流程控制："></a>流程控制：</h3><ul>
+<li>如下：<br>  IF：用来进行条件判断。根据是否满足条件，执行不同语句<br>  CASE：用来进行条件判断，可实现比IF语句更复杂的条件判断<br>  LOOP：重复执行特定的语句，实现一个简单的循环<br>  LEAVE：用于跳出循环控制<br>  ITERATE：跳出本次循环，然后直接进入下一次循环<br>  REPEAT：有条件控制的循环语句。当满足特定条件时，就会跳出循环语句<br>  WHILE：有条件控制的循环语句</li>
+</ul>
+<h1 id="MySQL用户和权限管理"><a href="#MySQL用户和权限管理" class="headerlink" title="MySQL用户和权限管理"></a>MySQL用户和权限管理</h1><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><ul>
+<li><p>元数据数据库：mysql</p>
+<ul>
+<li><p>系统授权表：</p>
+<ul>
+<li><p>db, host, user</p>
+</li>
+<li><p>columns_priv, tables_priv, procs_priv, proxies_priv</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户账号：<ul>
+<li>‘USERNAME‘@’HOST’：</li>
+<li>@’HOST’:</li>
+<li>主机名；</li>
+<li>IP地址或Network;</li>
+<li>通配符：</li>
+<li>%, _: 172.16.%.%</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [mysql]&gt; create user hong@&apos;192.168.1.11&apos; identified by &apos;centos&apos;;</span><br><span class="line">MariaDB [mysql]&gt; RENAME USER old_user_name TO new_user_name</span><br><span class="line">MariaDB [mysql]&gt; DROP USER &apos;&apos;@&apos;localhost&apos;;	#删除空用户</span><br><span class="line">MariaDB [mysql]&gt; DROP USER &apos;USERNAME&apos;@&apos;HOST</span><br></pre></td></tr></table></figure>
+<h2 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h2><p><strong>正常修改密码</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [mysql]&gt; SET PASSWORD FOR &apos;user&apos;@&apos;host&apos; = PASSWORD(‘password&apos;);</span><br><span class="line">MariaDB [mysql]&gt; UPDATE mysql.user SET password=PASSWORD(&apos;password&apos;) WHERE clause;</span><br><span class="line">MariaDB [mysql]&gt; FLUSH PRIVILEGES;</span><br><span class="line">]# mysqladmin -u root –poldpass password &apos;newpass&apos;</span><br></pre></td></tr></table></figure>
+<p><strong>忘记管理员密码的解决办法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">]#systemctl stop mariadb</span><br><span class="line">]#vim /etc/my.cnf </span><br><span class="line">[mysqld]</span><br><span class="line">--skip-grant-tables </span><br><span class="line">]#systemctl restart mariadb</span><br><span class="line">]#mysql</span><br><span class="line">MariaDB [mysql]&gt; update user set  password=password(&apos;centos6&apos;) where user=&apos;root&apos; ;</span><br><span class="line">]#sed -i &apos;s/--skip-grant-tables//&apos; /etc/my.cnf    #删除刚添加的那行</span><br><span class="line">]#systemctl restart mariadb</span><br><span class="line">]#mysql -pcentos6</span><br></pre></td></tr></table></figure>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MariaDB[hellodb]&gt; grant all  on hellodb.* to hong@&apos;192.168.1.%&apos;;</span><br><span class="line">MariaDB[hellodb]&gt; grant select,insert on hellodb.* to mage@&apos;%&apos; identified by &apos;centos&apos;;</span><br><span class="line">MariaDB[hellodb]&gt; show grants for mage@&apos;%&apos;;</span><br><span class="line">MariaDB[hellodb]&gt; show grants for hong@&apos;192.168.1.%&apos;;</span><br><span class="line">MariaDB[hellodb]&gt; REVOKE SELECT ON hellodb.* FROM &apos;mage&apos;@&apos;%;</span><br><span class="line">MariaDB[hellodb]&gt; FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：MariaDB服务进程启动时会读取mysql库中所有授权表至内存</li>
+</ul>
+<ol>
+<li><p>GRANT或REVOKE等执行权限操作会保存于系统表中，MariaDB的服务进<br> 程通常会自动重读授权表，使之生效</p>
+</li>
+<li><p>对于不能够或不能及时重读授权表的命令，可手动让MariaDB的服务进程<br> 重读授权表：<code>MariaDB[hellodb]&gt; FLUSH PRIVILEGES;</code></p>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/grant.html" target="_blank" rel="noopener">参考官方授权</a></p>
+</li>
+</ol>
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><h2 id="1-练习一"><a href="#1-练习一" class="headerlink" title="1.练习一"></a>1.练习一</h2><p><strong>导入hellodb.sql生成数据库:</strong></p>
+<blockquote>
+<ol>
+<li>在students表中，查询年龄大于25岁，且为男性的同学的名字和年龄</li>
+<li>以ClassID为分组依据，显示每组的平均年龄</li>
+<li>显示第2题中平均年龄大于30的分组及平均年龄</li>
+<li>显示以L开头的名字的同学的信息</li>
+<li>显示TeacherID非空的同学的相关信息</li>
+<li>以年龄排序后，显示年龄最大的前10位同学的信息</li>
+<li>查询年龄大于等于20岁，小于等于25岁的同学的信息</li>
+</ol>
+</blockquote>
+<p><strong>answer</strong>:</p>
+<ol>
+<li><p><code>SELECT Name,Age FROM students WHERE Age &gt;25 AND Gender=&#39;M&#39;;</code> </p>
+</li>
+<li><p><code>SELECT avg(age),ClassID FROM students WHERE ClassID IS NOT NULL GROUP BY ClassID ;</code></p>
+</li>
+<li><p><code>SELECT avg(Age),ClassID FROM students WHERE ClassID IS NOT NULL  GROUP BY ClassID HAVING avg(Age) &gt; 30;</code> </p>
+</li>
+<li><p><code>MariaDB [hellodb]&gt; SELECT * FROM students WHERE Name LIKE &#39;L%&#39;;</code></p>
+</li>
+<li><p><code>MariaDB [hellodb]&gt; SELECT * FROM students WHERE TeacherID IS NOT NULL;</code>    </p>
+</li>
+<li><p><code>MariaDB [hellodb]&gt; SELECT * FROM students ORDER BY Age DESC LIMIT 10;</code> </p>
+</li>
+<li><p>3种方法</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MariaDB [hellodb]&gt; SELECT * FROM students WHERE Age &gt;=20 AND Age &lt;=25;    </span><br><span class="line">MariaDB [hellodb]&gt; SELECT * FROM students WHERE Age  BETWEEN 20 AND 25; </span><br><span class="line">MariaDB [hellodb]&gt; SELECT * FROM students WHERE Age  IN (20,21,22,23,24,25);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="2-练习二"><a href="#2-练习二" class="headerlink" title="2.练习二"></a>2.练习二</h2><p>导入hellodb.sql，以下操作在students表上执行</p>
+<blockquote>
+<ol>
+<li>以ClassID分组，显示每班的同学的人数</li>
+<li>以Gender分组，显示其年龄之和</li>
+<li>以ClassID分组，显示其平均年龄大于25的班级</li>
+<li>以Gender分组，显示各组中年龄大于25的学员的年龄之和</li>
+<li>显示前5位同学的姓名、课程及成绩</li>
+<li>显示其成绩高于80的同学的名称及课程；</li>
+<li>求前8位同学每位同学自己两门课的平均成绩，并按降序排列</li>
+<li>显示每门课程课程名称及学习了这门课的同学的个数</li>
+<li>显示其年龄大于平均年龄的同学的名字</li>
+<li>显示其学习的课程为第1、2，4或第7门课的同学的名字</li>
+<li>显示其成员数最少为3个的班级的同学中年龄大于同班同学平均年龄的同学</li>
+<li>统计各班级中年龄大于全校同学平均年龄的同学 </li>
+</ol>
+</blockquote>
+<p>answers：</p>
+<ol>
+<li><p><code>SELECT count(StuID),ClassID FROM students GROUP BY ClassID ;</code>  </p>
+</li>
+<li><p><code>SELECT sum(Age),Gender FROM students GROUP BY Gender ;</code> </p>
+</li>
+<li><p><code>SELECT avg(Age),ClassID FROM students GROUP BY ClassID HAVING avg(Age) &gt; 25;</code> </p>
+</li>
+<li><p><code>SELECT sum(Age),Gender FROM students WHERE Age &gt; 25 GROUP BY Gender ;</code> </p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT s.Name,courses.Course,scores.Score FROM </span><br><span class="line">(select * from students limit 5) AS s  LEFT JOIN scores ON scores.StuID = s.StuID </span><br><span class="line">LEFT JOIN courses ON scores.CourseID =courses.CourseID;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT Name,Course,Score FROM (students LEFT JOIN scores ON students.StuID=scores.StuID ) </span><br><span class="line">LEFT JOIN courses ON courses.CourseID=scores.CourseID WHERE Score &gt; 80;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT Name,avg(Score) FROM (SELECT  * FROM students LIMIT 8) AS rj LEFT JOIN scores AS</span><br><span class="line">jr ON rj.StuID=jr.StuID GROUP BY Name ORDER BY avg(Score) DESC;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT courses.Course,count(rj.StuID) FROM scores AS rj LEFT JOIN courses ON courses.CourseID=rj.CourseID GROUP BY rj.CourseID;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT Name,Age FROM students WHERE Age &gt; (SELECT avg(Age) FROM students);</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT rj.Name,scores.CourseID FROM students AS rj LEFT JOIN scores ON scores.StuID = rj.StuID WHERE scores.CourseID IN (1,2,4,7)</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT students.name,students.age,tp.classid,tp.avga FROM </span><br><span class="line">students,(SELECT classid,COUNT(stuid) AS cs,AVG(age) AS avga FROM </span><br><span class="line">students GROUP BY classid HAVING cs &gt;=3) AS tp </span><br><span class="line">WHERE  students.age&gt;tp.avga AND students.classid=tp.classid;</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT rj.Name,rj.Age FROM students AS rj LEFT JOIN classes AS jr ON rj.ClassID=jr.ClassID WHERE rj.ClassID=jr.ClassID AND Age &gt; (SELECT AVG(Age) FROM students);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+</div>
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Louis
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://fenghong.tech/hexo-mysql2.html" title="MYSQL(二)">https://fenghong.tech/hexo-mysql2.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"> <i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-mysql1.html" rel="next" title="MYSQL(一)">
+                <i class="fa fa-chevron-left"></i> MYSQL(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Hexo-Dns.html" rel="prev" title="DNS服务">
+                DNS服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Louis" />
+            
+              <p class="site-author-name" itemprop="name">Louis</p>
+              <p class="site-description motion-element" itemprop="description">每一个不曾起舞的日子都是对生命的辜负</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/oldthreefeng" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:louisehong4168@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-mail"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://fenghong.tech" target="_blank" title="MY Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>MY Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/louisehong4168" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://blog.51cto.com/13698281" target="_blank" title="Blog">
+                      
+                        <i class="fa fa-fw fa-skype"></i>Blog</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://fontawesome.com/icons" title="Awesome" target="_blank">Awesome</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.dongfei.tech/" title="东飞同学" target="_blank">东飞同学</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库基础"><span class="nav-number">1.</span> <span class="nav-text">数据库基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统的文件系统管理的缺陷"><span class="nav-number">1.1.</span> <span class="nav-text">传统的文件系统管理的缺陷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库管理系统的优点"><span class="nav-number">1.2.</span> <span class="nav-text">数据库管理系统的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库管理系统"><span class="nav-number">1.3.</span> <span class="nav-text">数据库管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据Key-Value"><span class="nav-number">1.4.</span> <span class="nav-text">关系型数据Key/Value</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据三要素"><span class="nav-number">1.5.</span> <span class="nav-text">数据三要素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的正规化分析"><span class="nav-number">1.6.</span> <span class="nav-text">数据库的正规化分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL概念"><span class="nav-number">1.7.</span> <span class="nav-text">MYSQL概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动MariaDB服务"><span class="nav-number">1.8.</span> <span class="nav-text">启动MariaDB服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初识数据库"><span class="nav-number">1.8.1.</span> <span class="nav-text">初识数据库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改MariaDB环境变量"><span class="nav-number">1.9.</span> <span class="nav-text">修改MariaDB环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell的环境变量；"><span class="nav-number">1.9.1.</span> <span class="nav-text">shell的环境变量；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行的选项改变mariadb-PS1"><span class="nav-number">1.9.2.</span> <span class="nav-text">命令行的选项改变mariadb_PS1;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc-my-cnf-d-mysql-clients-cnf的文件修改"><span class="nav-number">1.9.3.</span> <span class="nav-text">/etc/my.cnf.d/mysql-clients.cnf的文件修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql客户端选项"><span class="nav-number">1.10.</span> <span class="nav-text">Mysql客户端选项</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库操作"><span class="nav-number">2.</span> <span class="nav-text">数据库操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL规范"><span class="nav-number">2.1.</span> <span class="nav-text">SQL规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的组件-对象-："><span class="nav-number">2.2.</span> <span class="nav-text">数据库的组件(对象)：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库操作-1"><span class="nav-number">2.3.</span> <span class="nav-text">数据库操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表的操作"><span class="nav-number">3.</span> <span class="nav-text">表的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DML语句"><span class="nav-number">3.1.</span> <span class="nav-text">DML语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insert"><span class="nav-number">3.2.</span> <span class="nav-text">insert</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#update"><span class="nav-number">3.3.</span> <span class="nav-text">update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#delete-慎用"><span class="nav-number">3.4.</span> <span class="nav-text">delete:慎用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-U-安全模式"><span class="nav-number">3.5.</span> <span class="nav-text">mysql -U 安全模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DQL语句"><span class="nav-number">3.6.</span> <span class="nav-text">DQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SELECT"><span class="nav-number">3.6.1.</span> <span class="nav-text">SELECT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单表操作"><span class="nav-number">3.6.2.</span> <span class="nav-text">单表操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句"><span class="nav-number">3.6.3.</span> <span class="nav-text">where子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-JOINS"><span class="nav-number">3.6.4.</span> <span class="nav-text">SQL JOINS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#functions"><span class="nav-number">3.6.5.</span> <span class="nav-text">functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储过程"><span class="nav-number">3.6.6.</span> <span class="nav-text">存储过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程控制："><span class="nav-number">3.6.7.</span> <span class="nav-text">流程控制：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL用户和权限管理"><span class="nav-number">4.</span> <span class="nav-text">MySQL用户和权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户"><span class="nav-number">4.1.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密码"><span class="nav-number">4.2.</span> <span class="nav-text">密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限"><span class="nav-number">4.3.</span> <span class="nav-text">权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#练习"><span class="nav-number">5.</span> <span class="nav-text">练习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-练习一"><span class="nav-number">5.1.</span> <span class="nav-text">1.练习一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-练习二"><span class="nav-number">5.2.</span> <span class="nav-text">2.练习二</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Louis</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">全站共140.6k字</span>
+</div>
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://louis.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://fenghong.tech/hexo-mysql2.html';
+          this.page.identifier = 'hexo-mysql2.html';
+          this.page.title = 'MYSQL(二)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://louis.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WUrOTFdNyFLyPvVTH21BtCYh-gzGzoHsz", "7Mybsg0GSjOAiBwjuLWlPsOq");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
