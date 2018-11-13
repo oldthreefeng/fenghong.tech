@@ -257,6 +257,95 @@ DOMAINS="DNS:example.com,DNS:whatever.example.com"
 ./letsencrypt.sh bbb.conf
 ```
 
+### lets-dns
+
+**下载**
+
+```
+wget https://github.com/xdtianyu/scripts/raw/master/le-dns/le-dnspod.sh
+wget https://github.com/xdtianyu/scripts/raw/master/le-dns/dnspod.conf
+chmod +x le-dnspod.sh
+```
+
+**配置**
+
+`dnspod.conf` 文件内容
+
+```
+TOKEN="YOUR_TOKEN_ID,YOUR_API_TOKEN"
+RECORD_LINE="默认"
+DOMAIN="example.com"
+CERT_DOMAINS="example.com www.example.com im.example.com"
+#ECC=TRUE
+```
+
+修改其中的 `TOKEN` 为您的 [dnspod api token](https://www.dnspod.cn/console/user/security) ，注意格式为`123456,556cxxxx`。
+修改 `DOMAIN` 为你的根域名，修改 `CERT_DOMAINS` 为您要签的域名列表，需要 `ECC` 证书时请取消 `#ECC=TRUE` 的注释。
+
+**运行**
+```
+[root@aliyun_file nginx]# ./le-dnspod.sh dnspod.conf 
+# INFO: Using main config file dnspod.conf
++ Account already registered!
+# INFO: Using main config file dnspod.conf
+Processing www.fenghong.tech with alternative names: wiki.fenghong.tech cloud.fenghong.tech
+ + Creating new directory ./certs/www.fenghong.tech ...
+ + Signing domains...
+ + Generating private key...
+ + Generating signing request...
+ + Requesting new certificate order from CA...
+ + Received 3 authorizations URLs from the CA
+ + Handling authorization for cloud.fenghong.tech
+ + Handling authorization for www.fenghong.tech
+ + Handling authorization for wiki.fenghong.tech
+ + 3 pending challenge(s)
+ + Deploying challenge tokens...
+cloud.fenghong.tech MszO0HsThuxa2OD5JOggj3xodgCjwhRybBpKaDUjarM gpxslsY3Hl9croCAQBHYUOveXZpuwoPaZlvqtzOMtBg
+_acme-challenge.cloud.fenghong.tech
+fenghong.tech 69699373
+_acme-challenge.cloud:391234194
+UPDATE RECORD
+DNS UPDATE SUCCESS
+www.fenghong.tech rGUqFsbLKL8ygoZSjn-6iMrP6LriMaaMwqcD5iI0MLc jxbDA17eWGgxq1gydYyh1mZ0Y-1UxP3KmASkg5vV4oA
+_acme-challenge.www.fenghong.tech
+fenghong.tech 69699373
+_acme-challenge.www:391234826
+UPDATE RECORD
+DNS UPDATE SUCCESS
+wiki.fenghong.tech Tpx0U3AJxgC3k7jfr2kUPTPcRVYV4hyaH6uWhikfFDo Hs7rqkI5sDhLjAPe7Q8gpYt6PW2Ov6eV1U4-sKurwaU
+_acme-challenge.wiki.fenghong.tech
+fenghong.tech 69699373
+_acme-challenge.wiki:391218779
+UPDATE RECORD
+DNS UPDATE SUCCESS
+ + Responding to challenge for cloud.fenghong.tech authorization...
+ + Challenge is valid!
+ + Responding to challenge for www.fenghong.tech authorization...
+ + Challenge is valid!
+ + Responding to challenge for wiki.fenghong.tech authorization...
+ + Challenge is valid!
+ + Cleaning challenge tokens...
+ + Requesting certificate...
+ + Checking certificate...
+ + Done!
+ + Creating fullchain.pem...
+ + Done!
+```
+
+最后生成的文件在当前目录的 certs 目录下
+
+**cron 定时任务**
+
+如果证书过期时间不少于30天， [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh) 脚本会自动忽略更新，所以至少需要29天运行一次更新。
+
+每隔20天(每个月的5号和25号)自动更新一次证书，可以在 `le-dnspod.sh` 脚本最后加入 service nginx reload等重新加载服务。
+
+`0 0 5/20 * * /etc/nginx/le-dnspod.sh /etc/nginx/le-dnspod.conf >> /var/log/le-dnspod.log 2>&1`
+
+**注意** `ubuntu 16.04` 不能定义 `day of month` 含有开始天数的 `step values`，可以替换命令中的 `5/20` 为 `5,25`。
+
+更详细的 crontab 参数请参考 [crontab.guru](http://crontab.guru/) 进行自定义
+下载文件
 
 
 ### 其它参考
