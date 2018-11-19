@@ -173,10 +173,22 @@ ERROR! The server quit without updating PID file (/udisk/mysql/mysql/qx_sit.pid)
 # chown -R mysql.mysql /data/mysql/
 ```
 **1820**
+安装数据库时，必须修改密码才可以执行sql语句。
+
 ```
 mysql> SELECT 1;
 ERROR 1820 (HY000): You must SET PASSWORD before executing this statement
 
 mysql> SET PASSWORD = PASSWORD('new_password');
 Query OK, 0 rows affected (0.01 sec)
+```
+**1418**
+在导入数据的时候，报如下错误。
+
+```
+ERROR 1418 (HY000) at line 22997: This function has none of DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled (you *might* want to use the less safe log_bin_trust_function_creators variable)
+
+##解决措施
+$ mysql -uroot -p
+mysql> SET GLOBAL log_bin_trust_function_creators = 1;
 ```
