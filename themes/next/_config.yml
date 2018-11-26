@@ -125,7 +125,7 @@ scheme: Muse
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/oldthreefeng || github 
-  E-Mail: mailto:louisehong4168@gmail.com || mail
+  E-Mail: mailto:louisehong4168@gmail.com || stack-overflow 
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   MY Page: https://fenghong.tech || facebook
