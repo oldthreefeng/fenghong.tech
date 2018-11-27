@@ -95,8 +95,8 @@ menu:
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #go: /go/ || heartbeat
-  music: /music || heartbeat
-  wiki: "http://wiki.fenghong.tech/"
+  music: /music || heartbeat 
+  wiki: "http://wiki.fenghong.tech/" 
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -124,8 +124,8 @@ scheme: Mist
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/oldthreefeng || github
-  E-Mail: mailto:louisehong4168@gmail.com || stack-overflow
+  GitHub: https://github.com/oldthreefeng || github 
+  E-Mail: mailto:louisehong4168@gmail.com || mail
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
   MY Page: https://fenghong.tech || facebook
@@ -149,7 +149,6 @@ links_layout: inline
 links:
   Awesome: https://fontawesome.com/icons
   东飞同学: http://www.dongfei.tech/
-  wiki: https://wiki.fenghong.tech/
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
@@ -218,7 +217,7 @@ excerpt_description: true
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   #enable: false
-  enable: true
+  enable: true 
   length: 150
 
 # Post meta display settings
@@ -232,7 +231,7 @@ post_meta:
 # Dependencies: https://github.com/willin/hexo-wordcount
 post_wordcount:
   item_text: true
-  wordcount: true
+  wordcount: true 
   min2read: true
   totalcount: false
   separated_meta: true
@@ -251,7 +250,7 @@ post_wordcount:
 
 # Declare license on posts
 post_copyright:
-  enable: ture
+  enable: ture 
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
@@ -362,7 +361,7 @@ han: false
 
 # Disqus
 disqus:
-  enable: false
+  enable: true
   shortname: louis
   count: true
 
@@ -384,9 +383,9 @@ disqus_shortname: louis
 
 
 valine:
-  enable: ture
-  appid: ddtqHsRuGi6twN4Sse3c6Vxc-gzGzoHsz
-  appkey: IGBYVOIgUjq8yFlkVttbM5gH
+  enable: true
+  app_id: WUrOTFdNyFLyPvVTH21BtCYh-gzGzoHsz
+  app_key: 7Mybsg0GSjOAiBwjuLWlPsOq
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
@@ -429,7 +428,7 @@ gitment:
 
 #online contact
 daovoice: true
-daovoice_app_ip: 3572d35b
+daovoice_app_ip: 3572d35b 
 # Share
 # This plugin is more useful in China, make sure you known how to use it.
 # And you can find the use guide at official webiste: http://www.jiathis.com/.
@@ -558,7 +557,7 @@ firestore:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: false
+  enable: false 
   # custom uv span for the whole site
   site_uv: true
   site_uv_header: <i class="fa fa-user"></i>
@@ -572,7 +571,7 @@ busuanzi_count:
   page_pv_header: <i class="fa fa-file-o"></i>
   page_pv_footer: 次
 
-
+  
 # Tencent analytics ID
 # tencent_analytics:
 
@@ -703,7 +702,7 @@ pace: true
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: false
+canvas_nest: false 
 
 # three_waves
 three_waves: false
