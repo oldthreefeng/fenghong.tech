@@ -18,9 +18,3 @@
     });
 </script>
 <script type="text/javascript" src="{{ theme.math.mathjax.cdn }}"></script>
-
-<style>
-.MathJax_Display {
-    overflow: auto hidden;
-}
-</style>

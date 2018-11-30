@@ -1,6 +1,7 @@
 <div align="right">Language: :us:
-<a title="Chinese" href="docs/zh-CN/README.md">:cn:</a>
+欢迎直接阅读中文版本 <a title="Chinese" href="docs/zh-CN/README.md">:cn:</a>
 <a title="Russian" href="docs/ru/README.md">:ru:</a></div>
+
 
 # <div align="center"><a title="Go to homepage" href="https://theme-next.org"><img align="center" width="56" height="56" src="https://raw.githubusercontent.com/theme-next/hexo-theme-next/master/source/images/logo.svg?sanitize=true"></a> e x T</div>
 
@@ -90,6 +91,52 @@ For those who also encounter **«[Error: Cannot find module 'hexo-util'](https:/
 ## Contributing
 
 Contribution is welcome, feel free to open an issue and fork. Waiting for your pull request.
+
+## The modification I made
+
+建议直接阅读中文版本的readme
+
+in `_config.yml`
+
+- Enable public security network filing
+    ```javascript
+    # 公安网备案 for Chinese users. local mean 京 or 赣  
+    # like：赣公网安备36010202000154号
+    gongan:
+        enable: true
+        local: 赣
+        num: 36010202000154
+    ```
+
+- Enable website runtime reminders
+
+  ```javascript
+  # The time the site started running. Show how long the site has been running.
+  # Format, 2018-02-13 15:00:00. If there is only one digit, use zero to complete.
+  runtime:
+        enable: true
+        year: 2018
+        mouth: 02
+        day: 13
+        hour: 15
+        minute: 00
+        second: 00
+  ```
+
+- Show the link at the beginning of the article and connect to the corresponding bilingual page.
+
+  This feature requires manual setting of the corresponding article 'abbrlink'. It is recommended to compile a language version of the file locally and then manually modify the link to another version of the article.
+
+  ```javascript
+  # Go to another language Page
+  translation:
+    enable: true
+    language: 中文  # language name
+    icon: flag
+    info: Chinese Version  # if it's empty, show url
+    url: https://xian6ge.cn # Destination URL
+  ```
+  Go [here](https://en.xian6ge.cn/posts/5b8c41e7/) to read more.
 
 ## Feedback
 

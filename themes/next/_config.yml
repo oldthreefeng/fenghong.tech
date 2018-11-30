@@ -77,21 +77,39 @@ footer:
   # -------------------------------------------------------------
   powered:
     # Hexo link (Powered by Hexo).
-    enable: true
+    enable: false
     # Version info of Hexo after Hexo link (vX.X.X).
-    version: true
+    version: false
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).
-    enable: true
+    enable: false
     # Version info of NexT after scheme info (vX.X.X).
-    version: true
+    version: false
   # -------------------------------------------------------------
   # Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
   # http://www.miitbeian.gov.cn
   beian:
-    enable: true
+    enable: ture
     icp: 鄂ICP备18027870号
+  # 公安网备案 for Chinese users. local mean 京 or 赣 
+  gongan:
+    enable: false
+    local: 京
+    num: 1234556667
+
+  # -------------------------------------------------------------
+  # web run time
+  # The time the site started running. Show how long the site has been running.
+  # Format, 2018-02-13 15:00:00. If there is only one digit, use zero to complete.
+  runtime:
+    enable: true
+    year: 2017
+    mouth: 02
+    day: 13
+    hour: 15
+    minute: 00
+    second: 00
 
   # -------------------------------------------------------------
   # Any custom text can be defined here.
@@ -103,8 +121,15 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
+  post: true
 
+# Go to another language Page
+translation:
+  enable: false
+  language: 中文  # language name
+  icon: flag
+  info: Chinese Version # if it's empty, show url
+  url: https://xian6ge.cn # Destination URL
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -113,6 +138,7 @@ creative_commons:
 # Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
 # Tips: Before you open this tag, remember set up your URL in hexo _config.yml ( ex. url: http://yourdomain.com )
+# url: https://en.xian6ge.cn
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
@@ -136,15 +162,15 @@ exturl: false
 # Value before `||` delimeter is the target link.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
+  #中文: cn.html || flag
   home: / || home
   about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
-  wiki: 'wiki.fenghong.tech'
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
@@ -174,7 +200,16 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
-#social:
+social:
+  #Homepage: https://luov.top/ || envira
+  GitHub: https://github.com/oldthreefeng || github
+  #CSDN: https://blog.csdn.net/SZT_LV || leanpub
+  #Facebook: https://www.facebook.com/rorwey || facebook
+  #QZone: https://user.qzone.qq.com/1004425708 || spinner
+  #Weibo: http://weibo.com/rorwey || weibo
+  #Zhihu: https://www.zhihu.com/people/LuoV  || quora
+  #E-Mail: http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=USM_IyY0KBE3Pik8MDg9fzI_PA || envelope
+ 
   #GitHub: https://github.com/yourname || github
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
@@ -188,7 +223,7 @@ site_state: true
   #Skype: skype:yourname?call|chat || skype
 
 social_icons:
-  enable: true
+  enable: false
   icons_only: false
   transition: false
 
@@ -199,19 +234,21 @@ social_icons:
 #github_banner: https://github.com/yourname || Follow me on GitHub
 
 # Blog rolls
-links_icon: link
-links_title: Links
+links_icon: handshake-o
+links_title: Friends
 links_layout: block
 #links_layout: inline
-#links:
-  #Title: http://example.com
+links:
+  Tosev7en: https://tosev7en.github.io/
+  myLuo's Blog: https://en.myluo.cn/
+  BeanYon: http://www.beanyon.site/
 
 # Sidebar Avatar
 avatar:
   # in theme directory(source/images): /images/avatar.gif
   # in site  directory(source/uploads): /uploads/avatar.gif
   # You can also use other linking images.
-  url: /images/avatar.gif
+  url: /images/avatar.jpg
   # If true, the avatar would be dispalyed in circle.
   rounded: false
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
@@ -266,7 +303,13 @@ sidebar:
 # ---------------------------------------------------------------
 # Post Settings
 # ---------------------------------------------------------------
-
+# At the end of the article, show thanks for reading
+end_info:
+  enable: true
+  start_info: -------The end of this article
+  icon: paw
+  end_info: Thank you for your reading-------
+  
 # Automatically scroll page to section which is under <!-- more --> mark.
 scroll_to_more: true
 
@@ -279,8 +322,8 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
-  length: 150
+  enable: true
+  length: 300
 
 # Read more button
 # If true, the read more button would be displayed in excerpt section
@@ -303,7 +346,7 @@ post_meta:
 symbols_count_time:
   separated_meta: true
   item_text_post: true
-  item_text_total: false
+  item_text_total: true
   awl: 4
   wpm: 275
 
@@ -313,9 +356,9 @@ codeblock:
   border_radius:
   # Add copy button on codeblock
   copy_button:
-    enable: false
+    enable: true
     # Show text copy result
-    show_result: false
+    show_result: true
 
 # Wechat Subscriber
 #wechat_subscriber:
@@ -327,10 +370,10 @@ codeblock:
 # If true, reward would be displayed in every article by default.
 # And you can show or hide one article specially through add page variable `reward: true/false`.
 reward:
-  enable: false
-  #comment: Donate comment here
-  #wechatpay: /images/wechatpay.jpg
-  #alipay: /images/alipay.jpg
+  enable: true
+  reward_comment: Donate comment here
+  wechatpay: /images/wechatpay.png
+  alipay: /images/alipay.png
   #bitcoin: /images/bitcoin.png
 
 # Related popular posts
@@ -444,7 +487,7 @@ font:
 
 # Math Equations Render Support
 math:
-  enable: false
+  enable: true
 
   # Default(true) will load mathjax/katex script on demand
   # That is it only render those page who has 'mathjax: true' in Front Matter.
@@ -457,11 +500,12 @@ math:
   # hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
   mathjax:
     # Use 2.7.1 as default, jsdelivr as default CDN, works everywhere even in China
-    cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    # cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     # For newMathJax CDN (cdnjs.cloudflare.com) with fallback to oldMathJax (cdn.mathjax.org).
     #cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
     # For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com).
     #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML
+    cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
 
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin)
   # needed to full Katex support.
@@ -502,7 +546,7 @@ pangu: false
 #swiftype_key:
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: c609ce8cb02792696ff7905effceae0c
 
 # Growingio Analytics ID
 # Copyright 2015-2018 GrowingIO, Inc. More info available at http://www.growingio.com
@@ -556,18 +600,6 @@ gitment:
   client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
-
-# Gitalk 
-# Demo: https://gitalk.github.io
-# Reference: https://asdfv1929.github.io/2018/01/20/gitalk/, https://liujunzhou.cn/2018/8/10/gitalk-error/#more
-gitalk:
-  enable: false
-  github_id:  # Github repo owner
-  repo:  # Repository name to store issues.
-  client_id:  # Github Application Client ID
-  client_secret:  # Github Application Client Secret
-  admin_user:  # GitHub repo owner and collaborators, only these guys can initialize github issues
-  distraction_free_mode: true # Facebook-like distraction free mode
 
 # Baidu Share
 # Available value:
@@ -695,7 +727,7 @@ firestore:
 # Show Views/Visitors of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi
 busuanzi_count:
-  enable: false
+  enable: true
   total_visitors: true
   total_visitors_icon: user
   total_views: true
@@ -712,7 +744,7 @@ busuanzi_count:
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
-baidu_push: false
+baidu_push: true
 
 # Google Calendar
 # Share your recent schedule to others via calendar page
@@ -723,7 +755,7 @@ baidu_push: false
 # api_key: https://console.developers.google.com
 # Create & manage a public Google calendar: https://support.google.com/calendar/answer/37083?hl=en
 calendar:
-  enable: false
+  enable: true
   calendar_id: <required> # Your Google account E-Mail
   api_key: <required>
   orderBy: startTime
@@ -738,7 +770,7 @@ calendar:
 # See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
 # Dependencies: https://github.com/theme-next/theme-next-algolia-instant-search
 algolia_search:
-  enable: false
+  enable: true
   hits:
     per_page: 10
   labels:
@@ -834,7 +866,7 @@ motion:
 # Please, choose only any one variant, do not need to install both.
 # For install 2.x: https://github.com/theme-next/theme-next-fancybox
 # For install 3.x: https://github.com/theme-next/theme-next-fancybox3
-fancybox: false
+fancybox: true
 
 # Added switch option for separated repo in 6.0.0.
 # Dependencies: https://github.com/theme-next/theme-next-fastclick
@@ -842,11 +874,11 @@ fastclick: false
 
 # Added switch option for separated repo in 6.0.0.
 # Dependencies: https://github.com/theme-next/theme-next-jquery-lazyload
-lazyload: false
+lazyload: true
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -904,7 +936,7 @@ canvas_ribbon:
 # Please use the https protocol of CDN files when you enable https on your site.
 vendors:
   # Internal path prefix. Please do not edit it.
-  _internal: lib
+  _internal: lib2
 
   # Internal version: 2.1.3
   # Example:
@@ -1044,34 +1076,8 @@ vendors:
   # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.3/Valine.min.js
   valine:
 
-  # Internal version: 1.4.0
-  # See: https://github.com/gitalk/gitalk
-  # Examples:
-  # gitalk_js: https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js
-  # gitalk_css: https://cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css
-  gitalk_js:
-  gitalk_css:
-
-  # Internal version: 0.7.3
-  # See: https://github.com/emn178/js-md5/
-  # Example: 
-  # md5: https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js
-  md5:
 
 # Assets
 css: css
 js: js
 images: images
-
- # -------------------------------------------------------------
- # web run time
- # 这是网站开始运行的时间，展示网站运行了多长时间。
- # 格式, 2018-02-13 15:00:00. 如果个数只有一位，需要补零。
-runtime:
-  enable: true
-  year: 2017
-  mouth: 02
-  day: 13
-  hour: 15
-  minute: 00
-  second: 00
