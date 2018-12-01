@@ -60,3 +60,6 @@
   #}{{ theme.footer.custom_text }}{#
 #}</div>
 {% endif %}
+{% if theme.footer.runtime.enable %}
+  {% include 'web-runtime.swig' %}
+{% endif %}
