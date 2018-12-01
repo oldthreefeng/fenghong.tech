@@ -1,5 +1,9 @@
 <div class="copyright">{#
-#}{% set current = date(Date.now(), "YYYY") %}&copy; {% if theme.footer.since and theme.footer.since != current %}{{ theme.footer.since }} – {% endif %}{#
+#}{% set current = date(Date.now(), "YYYY") %}{#
+#}{% if theme.footer.beian.enable %}{#
+#}  {{ next_url('http://www.miitbeian.gov.cn', theme.footer.beian.icp + ' ') }}{#
+#}{% endif %}{#
+#}&copy; {% if theme.footer.since and theme.footer.since != current %}{{ theme.footer.since }} – {% endif %}{#
 #}<span itemprop="copyrightYear">{{ current }}</span>
   <span class="with-love" id="animate">
     <i class="fa fa-{{ theme.footer.icon.name }}"></i>
@@ -56,17 +60,3 @@
   #}{{ theme.footer.custom_text }}{#
 #}</div>
 {% endif %}
-
-
-{% if theme.footer.runtime.enable %}
-  {% include 'web-runtime.swig' %}  
-{% endif %}
-
-
-{% if theme.footer.beian.enable %}{#
-#}  {{ next_url('http://www.miitbeian.gov.cn', theme.footer.beian.icp ) }}
-{% endif %}
-{% if theme.footer.gongan.enable %}{#
-#} {{' | '}}<span style="padding-left:25px;background:url(https://s1.ax1x.com/2018/09/29/ilmwIH.png) no-repeat left center" rel="nofollow">
-{{ next_url('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode='+theme.footer.gongan.num, theme.footer.gongan.local+'公网安备'+theme.footer.gongan.num+'号' ) }}</span>{#
-#}{% endif %}
