@@ -44,9 +44,9 @@
         var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
         var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
         if(diffYears==0){
-        document.getElementById("sitetime").innerHTML=" Website has run  "/*+diffYears+" year "*/+diffDays+" days "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+        document.getElementById("sitetime").innerHTML=" 网站已运行  "/*+diffYears+" 年 "*/+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
         } else{
-        document.getElementById("sitetime").innerHTML=" Website has run  "+diffYears+" year "+diffDays+" days "+diffHours+" h "+diffMinutes+" min "+diffSeconds+" s";
+        document.getElementById("sitetime").innerHTML=" 网站已运行  "+diffYears+" 年 "+diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
         }
     }
     //siteTime(document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,document.getElementById("year").innerHTML,0);
