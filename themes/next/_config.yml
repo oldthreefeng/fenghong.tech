@@ -153,10 +153,10 @@ exturl: false
   #commonweal: /404/ || heartbeat
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
-  #categories: /categories/ || th
-  archives: /archives/ || archive
+  about: /about || user
+  tags: /tags || tags
+  categories: /categories || th
+  archives: /archives || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #go: /go/ || heartbeat
@@ -274,7 +274,7 @@ sidebar:
   b2t: false
 
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
   # Enable sidebar on narrow view (only for Muse | Mist).
   onmobile: false
