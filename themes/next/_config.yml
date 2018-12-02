@@ -153,20 +153,20 @@ exturl: false
   #commonweal: /404/ || heartbeat
 menu:
   home: / || home
-  about: about/ || user
-  tags: tags/ || tags
+  about: /about || user
+  tags: /tags || tags
   #categories: /categories || th
-  archives: archives/ || archive
+  archives: /archives || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #go: /go/ || heartbeat
   music: /music || heartbeat
-  wiki: "http://wiki.fenghong.tech/"
+  wiki: "https://wiki.fenghong.tech/"
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: true
+  badges: false 
 
 # ---------------------------------------------------------------
 # Scheme Settings
