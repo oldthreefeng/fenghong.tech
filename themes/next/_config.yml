@@ -153,10 +153,10 @@ exturl: false
   #commonweal: /404/ || heartbeat
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
+  about: about/ || user
+  tags: tags/ || tags
   #categories: /categories || th
-  archives: /archives/ || archive
+  archives: archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #go: /go/ || heartbeat
