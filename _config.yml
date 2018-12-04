@@ -9,12 +9,12 @@ subtitle: 山不在高，有仙则名；水不在深，有龙则灵。
 description: 每一个不曾起舞的日子都是对生命的辜负  
 keywords:
 author: Louis
-language: zh-Hans 
+language: zh-CN 
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://fenghong.tech/
+url: https://www.fenghong.tech/
 root: /
 #permalink: :year/:month/:day/:title/
 permalink: :urlname.html
