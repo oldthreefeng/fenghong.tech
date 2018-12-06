@@ -96,7 +96,7 @@ footer:
     enable: true
     year: 2017
     mouth: 02
-    day: 13
+    day: 25
     hour: 15
     minute: 00
     second: 00
@@ -153,20 +153,20 @@ exturl: false
   #commonweal: /404/ || heartbeat
 menu:
   home: / || home
-  about: /about/ || user
-  tags: /tags/ || tags
+  about: /about || user
+  #tags: /tags/ || tags
   #categories: /categories || th
-  archives: /archives/ || archive
+  #archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #go: /go/ || heartbeat
-  music: /music/ || heartbeat
+  music: /music || heartbeat
   #wiki: "https://wiki.fenghong.tech/"
 
 # Enable/Disable menu icons / item badges.
 menu_settings:
   icons: true
-  badges: false 
+  badges: false
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -221,8 +221,8 @@ links_title: Links
 links_layout: block
 #links_layout: inline
 links:
-  Wiki: https://wiki.fenghong.tech
-  东飞: http://www.dongfei.tech
+  wiki|louis: https://wiki.fenghong.tech
+  东飞大佬blog: http://www.dongfei.tech
 
 # Sidebar Avatar
 avatar:
@@ -345,7 +345,7 @@ codeblock:
 # If true, reward would be displayed in every article by default.
 # And you can show or hide one article specially through add page variable `reward: true/false`.
 reward:
-  enable: true 
+  enable: true
   #comment: Donate comment here
   wechatpay: /images/wechatpay.jpg
   alipay: /images/alipay.jpg
@@ -575,7 +575,7 @@ gitment:
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
-# Gitalk 
+# Gitalk
 # Demo: https://gitalk.github.io
 # Reference: https://asdfv1929.github.io/2018/01/20/gitalk/, https://liujunzhou.cn/2018/8/10/gitalk-error/#more
 gitalk:
@@ -1072,7 +1072,7 @@ vendors:
 
   # Internal version: 0.7.3
   # See: https://github.com/emn178/js-md5/
-  # Example: 
+  # Example:
   # md5: https://cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js
   md5:
 
