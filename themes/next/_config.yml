@@ -152,7 +152,7 @@ exturl: false
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
 menu:
-  home: / || home
+  #home: / || home
   about: /about || user
   #tags: /tags/ || tags
   #categories: /categories || th
