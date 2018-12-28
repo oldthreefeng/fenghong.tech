@@ -76,7 +76,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 
 
-![img](/images/907596-20170302144135110-1552572184.png)
+![img](http://pic.fenghong.tech/907596-20170302144135110-1552572184.png)
 
 2. 三种路由类型说明
 
@@ -226,7 +226,7 @@ default via 172.20.0.1 dev ens37 proto static metric 101
 
 ## 实例1
 
-![1530544339526](/images/1530544339526.png)
+![1530544339526](http://pic.fenghong.tech/1530544339526.png)
 
 如上图所示，PC0机器和PC1机器之间经过两个路由器，要想使这两台机器通信，路由设置如下：
 1）Route1路由器设置：
@@ -249,7 +249,7 @@ default via 172.20.0.1 dev ens37 proto static metric 101
 
 ## 实例2
 
-![1530544817346](/images/1530544817346.png)
+![1530544817346](http://pic.fenghong.tech/1530544817346.png)
 
 如上图所示，使用A主机192.168.1.2能够ping通E主机192.168.4.2，这两台机能够通信。
 
