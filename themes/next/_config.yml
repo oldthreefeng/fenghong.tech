@@ -60,7 +60,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  since: 2017
+  since: 2018
 
   # Icon between year and copyright info.
   icon:
@@ -94,7 +94,7 @@ footer:
     icp: 鄂ICP备18027870号
   runtime:
     enable: true
-    year: 2017
+    year: 2018
     mouth: 02
     day: 25
     hour: 15
