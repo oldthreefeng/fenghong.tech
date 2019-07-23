@@ -257,3 +257,19 @@ categories: linux
 - H 参考文献
 
 ## 索引
+
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'location.href', // 可选。默认为 location.href
+  owner: 'oldthreefeng',
+  repo: 'gitment.me',
+  oauth: {
+    client_id: 'bf36da58974f55246877',
+    client_secret: '3b719f081d0c49ff9caf2b9c81a62cf94bbc9e09',
+  },
+})
+gitment.render('container')
+</script>
