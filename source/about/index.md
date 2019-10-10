@@ -12,6 +12,7 @@ date: 2018-06-06 19:12:47
 [我文章的热度排行](https://fenghong.tech/top)，这些都没了。。。。
 2018-12-28 
 [我的wiki](https://wiki.fenghong.tech)最近也加了点东西。
-
+2019-10-10
+[我的简历](https://baoduntest.oss-cn-shanghai.aliyuncs.com/101021423639.jpg)
   qq:992165098@qq.com   
   gmail: louisehong4168@gmail.com
